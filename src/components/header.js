@@ -1,42 +1,37 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
+import React from 'react';
+import { css } from '@emotion/react';
+import Navegacion from './nav';
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
+const Header = () => {
+    return ( 
+        <header
+            css={css`
+                background-color: #222;
+                padding: 1rem;
+            `}
         >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
-)
+            <div
+                css={css`
+                    max-width: 1200px;
+                    padding: 0 auto;
+                    @media (min-width: 768px) {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
+                    }
+                `}
+            >
+                <h1
+                    css={css`
+                        color: #FFF;
+                        text-align: center;
+                    `}
+                >Hotel Gatsby</h1>
+                <Navegacion />
+            </div>
+        </header>
+     );
 }
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
-
-export default Header
+ 
+export default Header;
