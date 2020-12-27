@@ -4,7 +4,7 @@ import Image from 'gatsby-image';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
-const TextInicio = styled.div`
+const Contenido = styled.main`
     padding-top: 4rem;
     max-width: 1200px;
     width: 95%;
@@ -20,38 +20,38 @@ const TextInicio = styled.div`
     }
 `;
 
-const ContenidoInicio = () => {
+const ContenidoNosotros = () => {
     const informacion = useStaticQuery(graphql`
-        query {
-            allDatoCmsPagina(filter: {slug: {eq: "inicio"}}) {
+        query{
+            allDatoCmsPagina(filter: {slug: {eq: "nosotros"}}) {
                 nodes {
                     titulo
                     contenido
                     imagen {
-                    fluid {
-                        ...GatsbyDatoCmsFluid
-                    }
+                        fluid( maxWidth: 1200) {
+                            ...GatsbyDatoCmsFluid
+                        }
                     }
                 }
             }
         }
     `);
     const { titulo, contenido, imagen } = informacion.allDatoCmsPagina.nodes[0];
-    return ( 
-        <>
-            <h2
-                css={css`
-                    text-align: center;
-                    font-size: 4rem;
-                    margin-top: 4rem;
-                `}
-            >{titulo}</h2>
-            <TextInicio>
-                <p>{contenido}</p>
-                <Image fluid={imagen.fluid} />
-            </TextInicio>
-        </>
+
+    return ( <>
+        <h2
+            css={css`
+                text-align: center;
+                font-size: 4rem;
+                margin-top: 4rem;
+            `}
+        >{titulo}</h2>
+        <Contenido>
+            <p>{contenido}</p>
+            <Image fluid={imagen.fluid} />
+        </Contenido>
+    </>
      );
 }
  
-export default ContenidoInicio;
+export default ContenidoNosotros;
